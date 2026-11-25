@@ -219,3 +219,9 @@ codyssey-mission2/
    - `git push`: 로컬 저장소의 커밋 이력을 원격 저장소(GitHub)에 업로드합니다.
    - `git clone`: 원격 저장소 전체를 새로운 로컬 디렉터리에 복제합니다.
    - `git pull`: 원격 저장소의 최신 변경사항을 가져와 현재 로컬 브랜치에 병합합니다.
+
+---
+
+## 9. Git 저장소 복제(clone) 및 동기화(pull) 실습 기록
+
+- 별도의 로컬 디렉터리에 원격 저장소(`https://github.com/fox9star/codyssey-mission2.git`)를 `git clone`으로 복제한 뒤 본 섹션을 추가하여 `git commit` 및 `git push`를 수행하고, 원본 로컬 작업 디렉터리에서 `git pull origin main`으로 변경사항을 정상 동기화했습니다.
