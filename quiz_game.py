@@ -230,13 +230,39 @@ class QuizGame:
         print(f"\n✅ 퀴즈가 추가되었습니다! (현재 총 {len(self.quizzes)}개)")
 
     def list_quizzes(self) -> None:
-        """퀴즈 목록 조회 기능."""
-        raise NotImplementedError("퀴즈 목록 기능은 아직 구현되지 않았습니다.")
+        """등록된 모든 퀴즈 목록을 출력합니다. 퀴즈가 없는 경우 안내 메시지를 출력합니다."""
+        if not self.quizzes:
+            print("📋 등록된 퀴즈가 없습니다.")
+            return
+
+        print(f"📋 등록된 퀴즈 목록 (총 {len(self.quizzes)}개)\n")
+        print("----------------------------------------")
+        for idx, quiz in enumerate(self.quizzes, start=1):
+            hint_badge = " [💡힌트 있음]" if quiz.hint else ""
+            print(f"[{idx}] {quiz.question}{hint_badge}")
+        print("----------------------------------------")
 
     def show_scores(self) -> None:
         """점수 및 히스토리 확인 기능."""
         raise NotImplementedError("점수 확인 기능은 아직 구현되지 않았습니다.")
 
     def delete_quiz(self) -> None:
-        """퀴즈 삭제 기능."""
-        raise NotImplementedError("퀴즈 삭제 기능은 아직 구현되지 않았습니다.")
+        """등록된 퀴즈 중 선택한 번호의 퀴즈를 삭제하고 파일(state.json)에 반영합니다."""
+        if not self.quizzes:
+            print("⚠️ 삭제할 퀴즈가 없습니다. 현재 등록된 퀴즈가 0개입니다.")
+            return
+
+        print("🗑️ 삭제할 퀴즈를 선택해 주세요.\n")
+        self.list_quizzes()
+        print()
+        target_num = prompt_int(
+            f"삭제할 퀴즈 번호 (1-{len(self.quizzes)}): ",
+            min_value=1,
+            max_value=len(self.quizzes),
+        )
+        removed_quiz = self.quizzes.pop(target_num - 1)
+        self.save_state()
+        print(
+            f"\n✅ [{target_num}] '{removed_quiz.question}' 퀴즈가 삭제되었습니다! "
+            f"(남은 퀴즈: {len(self.quizzes)}개)"
+        )
