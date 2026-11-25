@@ -12,6 +12,7 @@ class Quiz:
         choices (list[str]): 4개의 선택지 문자열 리스트
         answer (int): 정답 번호 (1 ~ 4)
         hint (str): 문제 풀이 시 참고할 수 있는 힌트 (보너스 과제)
+        category (str): 문제 분류 카테고리/태그 (기본값: "Python 기초")
     """
 
     EXPECTED_CHOICE_COUNT = 4
@@ -22,6 +23,7 @@ class Quiz:
         choices: list[str],
         answer: int,
         hint: str = "",
+        category: str = "Python 기초",
     ) -> None:
         if not isinstance(question, str) or not question.strip():
             raise ValueError("문제(question)는 비어 있지 않은 문자열이어야 합니다.")
@@ -48,14 +50,19 @@ class Quiz:
         self.choices: list[str] = cleaned_choices
         self.answer: int = answer
         self.hint: str = hint.strip() if isinstance(hint, str) else ""
+        cleaned_cat = category.strip() if isinstance(category, str) else ""
+        self.category: str = cleaned_cat if cleaned_cat else "Python 기초"
 
     def format_quiz(self, number: int | None = None, total: int | None = None) -> str:
         """문제와 4개의 선택지를 콘솔 출력용 문자열로 포맷팅하여 반환합니다."""
         lines: list[str] = ["----------------------------------------"]
+        tag_label = f" [{self.category}]" if self.category else ""
         if number is not None and total is not None:
-            lines.append(f"[문제 {number}/{total}]")
+            lines.append(f"[문제 {number}/{total}]{tag_label}")
         elif number is not None:
-            lines.append(f"[문제 {number}]")
+            lines.append(f"[문제 {number}]{tag_label}")
+        elif tag_label:
+            lines.append(tag_label.strip())
 
         lines.append(self.question)
         lines.append("")
@@ -87,6 +94,7 @@ class Quiz:
             "question": self.question,
             "choices": list(self.choices),
             "answer": self.answer,
+            "category": self.category,
         }
         if self.hint:
             data["hint"] = self.hint
@@ -105,16 +113,18 @@ class Quiz:
         choices = data.get("choices")
         answer = data.get("answer")
         hint = data.get("hint", "")
+        category = data.get("category", "Python 기초")
 
         return cls(
             question=question,
             choices=choices,
             answer=answer,
             hint=hint if isinstance(hint, str) else "",
+            category=category if isinstance(category, str) else "Python 기초",
         )
 
     def __repr__(self) -> str:
         return (
             f"Quiz(question={self.question!r}, choices={self.choices!r}, "
-            f"answer={self.answer!r}, hint={self.hint!r})"
+            f"answer={self.answer!r}, hint={self.hint!r}, category={self.category!r})"
         )

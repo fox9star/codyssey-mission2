@@ -238,8 +238,9 @@ class QuizGame:
         print(f"📋 등록된 퀴즈 목록 (총 {len(self.quizzes)}개)\n")
         print("----------------------------------------")
         for idx, quiz in enumerate(self.quizzes, start=1):
+            category_badge = f"[{quiz.category}] " if getattr(quiz, "category", "") else ""
             hint_badge = " [💡힌트 있음]" if quiz.hint else ""
-            print(f"[{idx}] {quiz.question}{hint_badge}")
+            print(f"[{idx}] {category_badge}{quiz.question}{hint_badge}")
         print("----------------------------------------")
 
     def show_scores(self) -> None:
