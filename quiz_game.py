@@ -243,8 +243,37 @@ class QuizGame:
         print("----------------------------------------")
 
     def show_scores(self) -> None:
-        """점수 및 히스토리 확인 기능."""
-        raise NotImplementedError("점수 확인 기능은 아직 구현되지 않았습니다.")
+        """최고 점수와 전체 게임 플레이 히스토리를 출력합니다. 아직 퀴즈를 풀지 않은 경우를 처리합니다."""
+        if self.best_score is None and not self.history:
+            print("📊 아직 플레이한 기록이 없습니다. 먼저 퀴즈를 풀어 보세요!")
+            return
+
+        if self.best_total > 0:
+            print(
+                f"🏆 최고 점수: {self.best_score}점 "
+                f"({self.best_total}문제 중 {self.best_correct}문제 정답)"
+            )
+        else:
+            print(f"🏆 최고 점수: {self.best_score}점")
+
+        print()
+        if not self.history:
+            print("📜 상세 플레이 히스토리가 없습니다.")
+            return
+
+        print(f"📜 게임 플레이 히스토리 (총 {len(self.history)}회)")
+        print("------------------------------------------------------------")
+        for idx, record in enumerate(self.history, start=1):
+            ts = record.get("timestamp", "-")
+            total_q = record.get("total_questions", 0)
+            correct_q = record.get("correct_count", 0)
+            hints = record.get("hints_used", 0)
+            rec_score = record.get("score", 0)
+            print(
+                f"[{idx}] {ts} | {total_q}문제 중 {correct_q}문제 정답 | "
+                f"힌트 {hints}회 | {rec_score}점"
+            )
+        print("------------------------------------------------------------")
 
     def delete_quiz(self) -> None:
         """등록된 퀴즈 중 선택한 번호의 퀴즈를 삭제하고 파일(state.json)에 반영합니다."""
