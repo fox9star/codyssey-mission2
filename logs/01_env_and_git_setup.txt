@@ -30,6 +30,6 @@ test_missing_and_corrupted_state_recovery (test_quiz_game.TestStorageAndQuizGame
 test_play_add_list_delete_score_and_persistence (test_quiz_game.TestStorageAndQuizGame.test_play_add_list_delete_score_and_persistence) ... ok
 
 ----------------------------------------------------------------------
-Ran 9 tests in 0.044s
+Ran 9 tests in 0.043s
 
 OK
