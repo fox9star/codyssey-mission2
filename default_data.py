@@ -1,0 +1,78 @@
+"""기본 퀴즈 데이터(파이썬 & 프로그래밍 기초) 제공 모듈."""
+
+from __future__ import annotations
+from quiz import Quiz
+
+
+def get_default_quizzes() -> list[Quiz]:
+    """초기 실행 또는 데이터 복구 시 사용할 기본 퀴즈 인스턴스 리스트(6문제)를 반환합니다."""
+    raw_quizzes = [
+        {
+            "question": "Python 프로그래밍 언어를 창시한 개발자는 누구인가요?",
+            "choices": [
+                "귀도 반 로섬 (Guido van Rossum)",
+                "리누스 토르발스 (Linus Torvalds)",
+                "제임스 고슬링 (James Gosling)",
+                "데니스 리치 (Dennis Ritchie)",
+            ],
+            "answer": 1,
+            "hint": "네덜란드 출신 프로그래머로, 코미디 쇼 'Monty Python'에서 언어 이름을 따왔습니다.",
+        },
+        {
+            "question": "파이썬에서 키(Key)와 값(Value)의 쌍으로 데이터를 저장하는 기본 자료형은 무엇인가요?",
+            "choices": [
+                "list (리스트)",
+                "tuple (튜플)",
+                "dict (딕셔너리)",
+                "bool (불리언)",
+            ],
+            "answer": 3,
+            "hint": "중괄호 { 'key': 'value' } 형태로 선언하며 JSON 객체와 구조가 유사합니다.",
+        },
+        {
+            "question": "파이썬 클래스에서 인스턴스가 생성될 때 가장 먼저 자동으로 호출되는 초기화 메서드는?",
+            "choices": [
+                "__main__",
+                "__init__",
+                "__start__",
+                "__new_object__",
+            ],
+            "answer": 2,
+            "hint": "Initialize(초기화하다)의 앞 네 글자에 양쪽 밑줄 두 개(__)가 붙습니다.",
+        },
+        {
+            "question": "파일 입출력이나 숫자 변환 중 오류가 발생해도 프로그램이 비정상 종료되지 않게 예외를 처리하는 구문은?",
+            "choices": [
+                "if / else",
+                "for / while",
+                "try / except",
+                "import / from",
+            ],
+            "answer": 3,
+            "hint": "'시도하다(try)' 블록에서 발생한 예외를 '잡아낸다(except)'는 의미를 가집니다.",
+        },
+        {
+            "question": "프로그램을 종료했다가 다시 실행해도 퀴즈와 점수가 유지되도록 구조화된 텍스트로 저장할 때 사용하는 표준 데이터 형식은?",
+            "choices": [
+                "JSON (JavaScript Object Notation)",
+                "RAM (Random Access Memory)",
+                "CPU (Central Processing Unit)",
+                "REPL (Read-Eval-Print Loop)",
+            ],
+            "answer": 1,
+            "hint": "파이썬 표준 라이브러리 `import json`을 통해 다루며 본 프로젝트의 `state.json` 확장자이기도 합니다.",
+        },
+        {
+            "question": "Git에서 원격 저장소(GitHub)의 최신 커밋 변경사항을 현재 로컬 브랜치로 가져와 병합하는 명령어는?",
+            "choices": [
+                "git init",
+                "git status",
+                "git pull",
+                "git log",
+            ],
+            "answer": 3,
+            "hint": "밀어 넣는 명령어가 `push`라면, 당겨 오는 명령어는 무엇일까요?",
+        },
+    ]
+
+    return [Quiz.from_dict(item) for item in raw_quizzes]
