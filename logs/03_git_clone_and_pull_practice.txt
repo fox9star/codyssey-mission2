@@ -1,0 +1,44 @@
+========================================================================
+[3] Git 저장소 복제(clone) 및 변경사항 동기화(pull) 실습 터미널 로그
+========================================================================
+
+# Step 1. 별도의 로컬 디렉터리에 미션 수행 원격 저장소를 복제(git clone)
+$ git clone https://github.com/fox9star/codyssey-mission2.git codyssey-mission2-clone
+Cloning into 'codyssey-mission2-clone'...
+remote: Enumerating objects: 42, done.
+remote: Counting objects: 100% (42/42), done.
+remote: Compressing objects: 100% (36/36), done.
+remote: Total 42 (delta 12), reused 38 (delta 8), pack-reused 0
+Receiving objects: 100% (42/42), 184.52 KiB | 3.12 MiB/s, done.
+Resolving deltas: 100% (12/12), done.
+
+# Step 2. 복제된 저장소(codyssey-mission2-clone)에서 README.md 수정 후 commit -> push 수행
+$ cd codyssey-mission2-clone
+$ git status -s
+ M README.md
+
+$ git add README.md
+$ git commit -m "Docs: 원격 저장소 clone 및 pull 동기화 실습 기록 추가"
+[main b0bc4c6] Docs: 원격 저장소 clone 및 pull 동기화 실습 기록 추가
+ 1 file changed, 6 insertions(+)
+
+$ git push origin main
+To https://github.com/fox9star/codyssey-mission2.git
+   f6034d6..b0bc4c6  main -> main
+
+# Step 3. 기존 로컬 작업 디렉터리(mission2)로 돌아와 git pull로 원격 변경사항 가져오기
+$ cd ../mission2
+$ git pull origin main
+From https://github.com/fox9star/codyssey-mission2
+ * branch            main       -> FETCH_HEAD
+   f6034d6..b0bc4c6  main       -> origin/main
+Updating f6034d6..b0bc4c6
+Fast-forward
+ README.md | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+# Step 4. pull 받은 커밋(b0bc4c6)과 내용이 로컬 저장소에 정상 반영되었는지 확인
+$ git log --oneline -n 3
+b0bc4c6 Docs: 원격 저장소 clone 및 pull 동기화 실습 기록 추가
+f6034d6 Docs: README.md 상세 문서 및 실행 결과 스크린샷 6종 추가
+e480ae6 Feat: 초기 플레이 및 추가 퀴즈 데이터가 반영된 state.json 저장

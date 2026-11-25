@@ -9,6 +9,7 @@
                 "데니스 리치 (Dennis Ritchie)"
             ],
             "answer": 1,
+            "category": "Python 기초",
             "hint": "네덜란드 출신 프로그래머로, 코미디 쇼 'Monty Python'에서 언어 이름을 따왔습니다."
         },
         {
@@ -20,6 +21,7 @@
                 "bool (불리언)"
             ],
             "answer": 3,
+            "category": "자료형",
             "hint": "중괄호 { 'key': 'value' } 형태로 선언하며 JSON 객체와 구조가 유사합니다."
         },
         {
@@ -31,6 +33,7 @@
                 "__new_object__"
             ],
             "answer": 2,
+            "category": "클래스와 객체",
             "hint": "Initialize(초기화하다)의 앞 네 글자에 양쪽 밑줄 두 개(__)가 붙습니다."
         },
         {
@@ -42,6 +45,7 @@
                 "import / from"
             ],
             "answer": 3,
+            "category": "예외 처리",
             "hint": "'시도하다(try)' 블록에서 발생한 예외를 '잡아낸다(except)'는 의미를 가집니다."
         },
         {
@@ -53,6 +57,7 @@
                 "REPL (Read-Eval-Print Loop)"
             ],
             "answer": 1,
+            "category": "파일 입출력",
             "hint": "파이썬 표준 라이브러리 `import json`을 통해 다루며 본 프로젝트의 `state.json` 확장자이기도 합니다."
         },
         {
@@ -64,6 +69,7 @@
                 "git log"
             ],
             "answer": 3,
+            "category": "Git 기초",
             "hint": "밀어 넣는 명령어가 `push`라면, 당겨 오는 명령어는 무엇일까요?"
         },
         {
@@ -75,6 +81,7 @@
                 "format()"
             ],
             "answer": 1,
+            "category": "Python 기초",
             "hint": "'덧붙이다'라는 뜻의 영어 동사로 list.append(x) 형태로 사용합니다."
         }
     ],
@@ -84,14 +91,7 @@
     "best_total": 5,
     "history": [
         {
-            "timestamp": "2026-11-26 03:50:12",
-            "total_questions": 5,
-            "correct_count": 4,
-            "hints_used": 0,
-            "score": 80
-        },
-        {
-            "timestamp": "2026-11-26 03:55:40",
+            "timestamp": "2026-11-26 04:18:18",
             "total_questions": 5,
             "correct_count": 5,
             "hints_used": 1,

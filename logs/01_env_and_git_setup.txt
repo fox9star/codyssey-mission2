@@ -1,0 +1,35 @@
+========================================================================
+[1] 개발 환경 설정 검증 로그 (Python 3.10+ / 표준 라이브러리 / Git 설정 / VSCode)
+========================================================================
+
+$ python --version
+Python 3.11.4
+
+$ git --version
+git version 2.55.0.windows.5
+
+$ git config --list (민감 정보 마스킹)
+core.autocrlf=true
+init.defaultbranch=main
+user.name=fox9star
+user.email=***+fox9star@users.noreply.github.com
+
+$ git remote -v
+origin	https://github.com/fox9star/codyssey-mission2.git (fetch)
+origin	https://github.com/fox9star/codyssey-mission2.git (push)
+
+$ python -m unittest -v test_quiz_game.py
+test_prompt_answer_or_hint (test_quiz_game.TestInputValidation.test_prompt_answer_or_hint) ... ok
+test_prompt_int_handles_whitespace_empty_alpha_and_out_of_range (test_quiz_game.TestInputValidation.test_prompt_int_handles_whitespace_empty_alpha_and_out_of_range) ... ok
+test_prompt_non_empty_str (test_quiz_game.TestInputValidation.test_prompt_non_empty_str) ... ok
+test_default_quizzes_count (test_quiz_game.TestQuizModel.test_default_quizzes_count) ... ok
+test_quiz_creation_and_methods (test_quiz_game.TestQuizModel.test_quiz_creation_and_methods) ... ok
+test_quiz_validation_errors (test_quiz_game.TestQuizModel.test_quiz_validation_errors) ... ok
+test_graceful_exit_on_keyboard_interrupt_and_eof (test_quiz_game.TestStorageAndQuizGame.test_graceful_exit_on_keyboard_interrupt_and_eof) ... ok
+test_missing_and_corrupted_state_recovery (test_quiz_game.TestStorageAndQuizGame.test_missing_and_corrupted_state_recovery) ... ok
+test_play_add_list_delete_score_and_persistence (test_quiz_game.TestStorageAndQuizGame.test_play_add_list_delete_score_and_persistence) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.044s
+
+OK
