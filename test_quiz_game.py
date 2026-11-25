@@ -110,13 +110,18 @@ class TestStorageAndQuizGame(unittest.TestCase):
         self.assertGreaterEqual(len(game.quizzes), 5)
         self.assertIsNone(game.best_score)
 
-        # 2. 파일이 손상되었을 때 경고 출력 후 기본 데이터로 복구
+        # 2. 파일이 손상되었을 때 원본을 .bak으로 백업하고 경고 출력 후 기본 데이터로 복구
         self.state_path.write_text("{corrupted_json...", encoding="utf-8")
         with patch("sys.stdout", new_callable=io.StringIO) as fake_out:
             recovered_game = QuizGame(state_path=self.state_path, shuffle_questions=False)
             out = fake_out.getvalue()
         self.assertIn("손상", out)
         self.assertGreaterEqual(len(recovered_game.quizzes), 5)
+        backup_file = self.state_path.with_name("state.json.bak")
+        self.assertTrue(backup_file.exists())
+        self.assertEqual(backup_file.read_text(encoding="utf-8"), "{corrupted_json...")
+        saved_after_recovery = json.loads(self.state_path.read_text(encoding="utf-8"))
+        self.assertEqual(saved_after_recovery.get("schema_version"), StateManager.SCHEMA_VERSION)
 
         # 3. 최소 스키마(quizzes, best_score) 호환성 확인
         minimal_payload = {
